@@ -1,0 +1,58 @@
+# ─────────────────────────────────────────────────────────────
+#  Ghostty config — Catppuccin Mocha
+#  Reload after editing: ⌘ + ⇧ + ,
+#  IMPORTANT: Ghostty has NO inline comments. A "#" must start
+#  its own line — never put one after a value on the same line.
+#  Docs: https://ghostty.org/docs/config
+# ─────────────────────────────────────────────────────────────
+
+theme = Catppuccin Mocha
+
+# ── Tier 1: daily-driver essentials ──
+font-size = 14
+# stop the distracting blink
+cursor-style-blink = false
+# breathing room around text
+window-padding-x = 8
+window-padding-y = 6
+window-padding-balance = true
+mouse-hide-while-typing = true
+# don't resurrect old shells on launch
+window-save-state = never
+# right-opt = Alt/Meta; left-opt still types accented chars
+macos-option-as-alt = right
+# multiline input in REPLs & Claude Code
+keybind = shift+enter=text:\n
+
+# ── Tier 2: appearance (solid & readable — no transparency) ──
+# Transparency + blur were letting background windows bleed through.
+# To bring it back: set background-opacity = 0.92 and background-blur = true
+background-opacity = 1
+background-blur = false
+# minimal titlebar but keeps tabs
+macos-titlebar-style = tabs
+# dim the inactive split
+unfocused-split-opacity = 0.9
+
+# ── Tier 3: power features ──
+# drop-down "quake" terminal
+keybind = cmd+grave_accent=toggle_quick_terminal
+quick-terminal-position = center
+quick-terminal-size = 70%,70%
+# Auto light/dark — uncomment to follow macOS appearance (overrides theme above):
+# theme = light:catppuccin-latte,dark:catppuccin-mocha
+
+# ── Tier 4: convenience ──
+# selecting text auto-copies it (no ⌘C needed)
+copy-on-select = true
+# move focus between splits with ⌘⌥+arrows (splits are created with ⌘D / ⌘⇧D)
+keybind = super+alt+left=goto_split:left
+keybind = super+alt+right=goto_split:right
+keybind = super+alt+up=goto_split:up
+keybind = super+alt+down=goto_split:down
+
+# ── Tier 5: shaders ──
+# Cursor trail animation — glow that chases the cursor when you move it / hit enter.
+# Safe here because the background is opaque (no bleed-through). bloom stays OFF.
+custom-shader = shaders/cursor_blaze.glsl
+# custom-shader = shaders/bloom.glsl

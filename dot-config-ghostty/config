@@ -1,0 +1,3 @@
+# Treat Option as Alt/Meta so Option+Backspace deletes the previous word
+macos-option-as-alt = true
+keybind = alt+backspace=text:\x17
