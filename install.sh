@@ -25,6 +25,14 @@ link() {
 
 echo "Installing Ghostty config from $REPO_DIR"
 
+# Legacy: an old "config.ghostty" here is NOT auto-loaded by Ghostty
+# (it only reads a file named "config"). Back it up so it's out of the way.
+LEGACY="$APP_SUPPORT/config.ghostty"
+if [ -e "$LEGACY" ] && [ ! -L "$LEGACY" ]; then
+  echo "  moving stray $LEGACY -> $LEGACY.bak-$STAMP"
+  mv "$LEGACY" "$LEGACY.bak-$STAMP"
+fi
+
 # ~/.config/ghostty/config
 link "$REPO_DIR/dot-config-ghostty/config" "$XDG_CONFIG/config"
 
