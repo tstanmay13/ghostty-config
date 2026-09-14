@@ -25,8 +25,8 @@ link() {
 
 echo "Installing Ghostty config from $REPO_DIR"
 
-# Legacy: an old "config.ghostty" here is NOT auto-loaded by Ghostty
-# (it only reads a file named "config"). Back it up so it's out of the way.
+# Standardize on this repo's "config" filename. Back up an existing
+# "config.ghostty" so it cannot shadow or conflict with the linked config.
 LEGACY="$APP_SUPPORT/config.ghostty"
 if [ -e "$LEGACY" ] && [ ! -L "$LEGACY" ]; then
   echo "  moving stray $LEGACY -> $LEGACY.bak-$STAMP"
@@ -40,5 +40,16 @@ link "$REPO_DIR/dot-config-ghostty/config" "$XDG_CONFIG/config"
 # so the shaders dir must sit next to it)
 link "$REPO_DIR/app-support/config"  "$APP_SUPPORT/config"
 link "$REPO_DIR/app-support/shaders" "$APP_SUPPORT/shaders"
+
+GHOSTTY="$(command -v ghostty || true)"
+if [ -z "$GHOSTTY" ] && [ -x /Applications/Ghostty.app/Contents/MacOS/ghostty ]; then
+  GHOSTTY=/Applications/Ghostty.app/Contents/MacOS/ghostty
+fi
+if [ -n "$GHOSTTY" ]; then
+  "$GHOSTTY" +validate-config
+  echo "Ghostty configuration validated."
+else
+  echo "Ghostty is not installed yet; run ghostty +validate-config after installing it."
+fi
 
 echo "Done. Reload Ghostty with ⌘ + ⇧ + , (or restart it)."
