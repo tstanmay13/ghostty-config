@@ -46,7 +46,10 @@ if [ -z "$GHOSTTY" ] && [ -x /Applications/Ghostty.app/Contents/MacOS/ghostty ];
   GHOSTTY=/Applications/Ghostty.app/Contents/MacOS/ghostty
 fi
 if [ -n "$GHOSTTY" ]; then
-  "$GHOSTTY" +validate-config
+  # Validate this repo's files on their own: the included cmux.conf carries cmux-only
+  # keys (sidebar-font-size, ...) that plain Ghostty reports as unknown fields.
+  "$GHOSTTY" +validate-config --config-file="$REPO_DIR/dot-config-ghostty/config"
+  "$GHOSTTY" +validate-config --config-file="$REPO_DIR/app-support/config"
   echo "Ghostty configuration validated."
 else
   echo "Ghostty is not installed yet; run ghostty +validate-config after installing it."
