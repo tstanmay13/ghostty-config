@@ -10,7 +10,7 @@ app-support/config          →  ~/Library/Application Support/com.mitchellh.gho
 app-support/shaders/        →  ~/Library/Application Support/com.mitchellh.ghostty/shaders/
 ```
 
-- **`dot-config-ghostty/config`** — minimal XDG config (Option-as-Alt, word-delete keybind). This is the file Ghostty loads by default.
+- **`dot-config-ghostty/config`** — minimal XDG config (Option-as-Alt, word-delete keybind). This is the file Ghostty loads by default. It also loads an optional `cmux.conf` next to it, which [cmux-config](https://github.com/tstanmay13/cmux-config) provides.
 - **`app-support/config`** — the full "daily driver" config: Catppuccin Mocha theme, font size, padding, quick terminal, split navigation, copy-on-select, and the cursor-blaze shader.
 - **`app-support/shaders/`** — custom GLSL shaders (`cursor_blaze.glsl` is active, `bloom.glsl` is available).
 

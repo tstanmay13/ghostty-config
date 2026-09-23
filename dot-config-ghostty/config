@@ -1,3 +1,7 @@
 # Treat Option as Alt/Meta so Option+Backspace deletes the previous word
 macos-option-as-alt = true
 keybind = alt+backspace=text:\x17
+
+# Optional per-app tweaks other repos link next to this file (cmux-config links cmux.conf).
+# The leading ? makes a missing file a no-op.
+config-file = ?cmux.conf
